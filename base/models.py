@@ -39,13 +39,13 @@ class Operators(models.Model):
 
 class faultyPart(models.Model):
     operator = models.ForeignKey(
-        Operators.planes, on_delete=models.SET_NULL, null=True)
+        Operators, on_delete=models.SET_NULL, null=True)
     part = models.ForeignKey(Parts, on_delete=models.SET_NULL, null=True)
     plane = models.ForeignKey(
-        operator.planes, on_delete=models.SET_NULL, null=True)
+        Planes, on_delete=models.SET_NULL, null=True)
     _id = models.AutoField(primary_key=True, editable=False)
     status = models.BooleanField(default=False)
     comment = models.TextField(null=False, blank=False)
 
     def __str__(self):
-        return self.part.serialNumber
+        return str(self.part)
